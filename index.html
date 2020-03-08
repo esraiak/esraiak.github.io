@@ -1,1 +1,64 @@
-hello world
+<!DOCTYPE html>
+<html>
+<head><title></title></head>
+<body>
+<h1 align="center" id="heading"></h1>
+<style> canvas { padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto; display: block; width: 800px; } </style>
+<canvas id="myCanvas" width="500" height="250" style="border:1px solid #d3d3d3;"> Your browser does not support the canvas element. </canvas>
+<input type="button" value="<<" onclick="t_inc(-10)">
+<input type="button" value="<" onclick="t_inc(-1)">
+<input type="button" value=">" onclick="t_inc(1)">
+<input type="button" value=">>" onclick="t_inc(10)">
+<p id="demo"></p>
+<script>
+function t_inc(x) {
+  T = T + x
+  if(T < 0 || T >= obj.states.length) {
+    T = T - x
+  }
+  draw_state();
+}
+function draw_state() {
+  var ctx = canvas.getContext("2d");
+  document.getElementById("heading").innerHTML = "State at time " + T
+  for(let j = 0; j < obj.states[T].length; j++) {
+    let instr = obj.states[T][j]
+    if(instr[0] == "moveTo") {
+      ctx.moveTo(instr[1], instr[2]);
+    } else if(instr[0] == 'lineTo') {
+      ctx.lineTo(instr[1], instr[2]);
+    } else if(instr[0] == 'fillRect') {
+      ctx.fillRect(instr[1],instr[2],instr[3],instr[4]);
+    }
+  }
+  ctx.stroke()
+}
+var txt = '{"states" : [ [["moveTo", 0, 0], ["lineTo", 500, 250]], [["fillRect", 20, 100, 10, 10], ["moveTo", 2,2]] ], "name" : "The first competition" }';
+var obj = JSON.parse(txt);
+var T = 0;
+var canvas = document.getElementById("myCanvas");
+draw_state()
+</script>
+
+</body>
+</html>
+
+
+<!--
+
+  How do we pass data? In JSON of course.
+
+  There will be a long list of keys like time0, time1, time2, time3, ... 
+  Each corresponding value describes the state at that time.
+  A state is a sequence of drawing instructions.
+
+  "time0" : {
+    "draw" : "
+
+  }
+  "time1" : {
+    [similar]
+  }
+
+
+-->
