@@ -10,6 +10,10 @@
 <input type="button" value=">" onclick="t_inc(1)">
 <input type="button" value=">>" onclick="t_inc(10)">
 <p id="demo"></p>
+
+<script type="text/javascript" src="data.js"> // This sets the variable <txt>, describing a competition state-by-state.
+</script>
+
 <script>
 function t_inc(x) {
   T = T + x
@@ -20,7 +24,7 @@ function t_inc(x) {
 }
 function draw_state() {
   var ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.beginPath(); ctx.clearRect(0, 0, canvas.width, canvas.height);
   document.getElementById("heading").innerHTML = "State at time " + T
   for(let j = 0; j < obj.states[T].length; j++) {
     let instr = obj.states[T][j]
@@ -30,11 +34,13 @@ function draw_state() {
       ctx.lineTo(instr[1], instr[2]);
     } else if(instr[0] == 'fillRect') {
       ctx.fillRect(instr[1],instr[2],instr[3],instr[4]);
+    } else if(instr[0] == 'strokeText') {
+      ctx.strokeText(instr[1], instr[2], instr[3]);
     }
+    document.getElementById("demo").innerHTML += "drew " + instr + "<br>"
   }
   ctx.stroke()
 }
-var txt = '{ "states": [[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",28,65,10,10],["fillRect",431,135,10,10],["fillRect",304,24,10,10],["fillRect",124,142,10,10],["fillRect",89,42,10,10],["fillRect",301,33,10,10],["fillRect",210,145,10,10],["fillRect",281,242,10,10],["fillRect",123,125,10,10],["fillRect",108,229,10,10],["fillRect",53,163,10,10],["fillRect",115,184,10,10],["fillRect",446,89,10,10],["fillRect",316,202,10,10],["fillRect",274,187,10,10],["fillRect",343,42,10,10],["fillRect",376,10,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",28,65,10,10],["fillRect",435,147,10,10],["fillRect",315,47,10,10],["fillRect",102,160,10,10],["fillRect",87,54,10,10],["fillRect",342,15,10,10],["fillRect",246,152,10,10],["fillRect",281,242,10,10],["fillRect",150,138,10,10],["fillRect",75,214,10,10],["fillRect",29,164,10,10],["fillRect",113,175,10,10],["fillRect",472,111,10,10],["fillRect",353,200,10,10],["fillRect",262,199,10,10],["fillRect",366,41,10,10],["fillRect",335,-2,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",13,61,10,10],["fillRect",438,133,10,10],["fillRect",354,67,10,10],["fillRect",147,167,10,10],["fillRect",76,31,10,10],["fillRect",382,21,10,10],["fillRect",270,133,10,10],["fillRect",245,232,10,10],["fillRect",184,133,10,10],["fillRect",101,223,10,10],["fillRect",30,183,10,10],["fillRect",133,174,10,10],["fillRect",472,111,10,10],["fillRect",366,218,10,10],["fillRect",264,189,10,10],["fillRect",359,60,10,10],["fillRect",358,21,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",5,61,10,10],["fillRect",484,111,10,10],["fillRect",340,66,10,10],["fillRect",133,181,10,10],["fillRect",62,10,10,10],["fillRect",406,19,10,10],["fillRect",290,138,10,10],["fillRect",245,232,10,10],["fillRect",219,137,10,10],["fillRect",59,235,10,10],["fillRect",21,175,10,10],["fillRect",160,174,10,10],["fillRect",466,96,10,10],["fillRect",353,204,10,10],["fillRect",227,169,10,10],["fillRect",378,62,10,10],["fillRect",368,29,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",49,64,10,10],["fillRect",484,111,10,10],["fillRect",368,80,10,10],["fillRect",124,180,10,10],["fillRect",62,10,10,10],["fillRect",370,40,10,10],["fillRect",337,128,10,10],["fillRect",283,243,10,10],["fillRect",248,158,10,10],["fillRect",59,235,10,10],["fillRect",36,166,10,10],["fillRect",127,167,10,10],["fillRect",443,81,10,10],["fillRect",316,227,10,10],["fillRect",240,156,10,10],["fillRect",371,66,10,10],["fillRect",399,7,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",88,79,10,10],["fillRect",472,87,10,10],["fillRect",394,56,10,10],["fillRect",101,164,10,10],["fillRect",62,10,10,10],["fillRect",345,39,10,10],["fillRect",355,107,10,10],["fillRect",283,243,10,10],["fillRect",224,137,10,10],["fillRect",107,228,10,10],["fillRect",22,164,10,10],["fillRect",111,160,10,10],["fillRect",468,67,10,10],["fillRect",323,240,10,10],["fillRect",267,136,10,10],["fillRect",415,74,10,10],["fillRect",438,-1,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",137,87,10,10],["fillRect",457,90,10,10],["fillRect",385,37,10,10],["fillRect",116,156,10,10],["fillRect",91,12,10,10],["fillRect",362,37,10,10],["fillRect",323,83,10,10],["fillRect",283,243,10,10],["fillRect",270,135,10,10],["fillRect",62,222,10,10],["fillRect",22,164,10,10],["fillRect",118,167,10,10],["fillRect",482,84,10,10],["fillRect",280,237,10,10],["fillRect",265,160,10,10],["fillRect",420,72,10,10],["fillRect",451,19,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",186,77,10,10],["fillRect",491,68,10,10],["fillRect",409,27,10,10],["fillRect",70,146,10,10],["fillRect",117,20,10,10],["fillRect",332,52,10,10],["fillRect",345,69,10,10],["fillRect",278,223,10,10],["fillRect",223,143,10,10],["fillRect",30,212,10,10],["fillRect",22,164,10,10],["fillRect",69,164,10,10],["fillRect",464,68,10,10],["fillRect",280,237,10,10],["fillRect",267,163,10,10],["fillRect",444,73,10,10],["fillRect",488,23,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",142,96,10,10],["fillRect",491,68,10,10],["fillRect",421,20,10,10],["fillRect",71,139,10,10],["fillRect",155,15,10,10],["fillRect",377,49,10,10],["fillRect",394,86,10,10],["fillRect",235,243,10,10],["fillRect",223,136,10,10],["fillRect",80,235,10,10],["fillRect",9,155,10,10],["fillRect",103,163,10,10],["fillRect",480,64,10,10],["fillRect",307,227,10,10],["fillRect",220,155,10,10],["fillRect",490,52,10,10],["fillRect",459,37,10,10] ],[ ["fillRect",20,110,10,10],["fillRect",60,32,10,10],["fillRect",234,196,10,10],["fillRect",168,111,10,10],["fillRect",491,68,10,10],["fillRect",381,31,10,10],["fillRect",108,117,10,10],["fillRect",155,15,10,10],["fillRect",411,66,10,10],["fillRect",436,111,10,10],["fillRect",225,224,10,10],["fillRect",174,128,10,10],["fillRect",57,234,10,10],["fillRect",9,155,10,10],["fillRect",58,143,10,10],["fillRect",480,64,10,10],["fillRect",350,211,10,10],["fillRect",194,133,10,10],["fillRect",487,77,10,10],["fillRect",459,37,10,10] ]] }';
 var obj = JSON.parse(txt);
 var T = 0;
 var canvas = document.getElementById("myCanvas");
