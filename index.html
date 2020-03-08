@@ -5,10 +5,12 @@
 <h1 align="center" id="heading"></h1>
 <style> canvas { padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto; display: block; width: 800px; } </style>
 <canvas id="myCanvas" width="500" height="250" style="border:1px solid #d3d3d3;"> Your browser does not support the canvas element. </canvas>
+<div align="center">
 <input type="button" value="<<" onclick="t_inc(-10)">
 <input type="button" value="<" onclick="t_inc(-1)">
 <input type="button" value=">" onclick="t_inc(1)">
 <input type="button" value=">>" onclick="t_inc(10)">
+</div>
 <p id="demo"></p>
 
 <script type="text/javascript" src="data.js"> // This sets the variable <txt>, describing a competition state-by-state.
@@ -37,7 +39,7 @@ function draw_state() {
     } else if(instr[0] == 'strokeText') {
       ctx.strokeText(instr[1], instr[2], instr[3]);
     }
-    document.getElementById("demo").innerHTML += "drew " + instr + "<br>"
+//    document.getElementById("demo").innerHTML += "drew " + instr + "<br>"
   }
   ctx.stroke()
 }
