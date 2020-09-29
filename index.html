@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><title></title></head>
-<body>
+<body bgcolor="#ff3399">
 <h1 align="center" id="heading"></h1>
 <style> canvas { padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto; display: block; width: 800px; } </style>
 <canvas id="myCanvas" width="500" height="250" style="border:1px solid #d3d3d3;"> Your browser does not support the canvas element. </canvas>
@@ -59,6 +59,22 @@ draw_state()
 <li>A typical deal is, "I will pay you $8 if you maintain a link to clearnet for 100 steps starting now." (We need to standardize the deals somehow for a start.) </li>
 </ul>
 
+
+<textarea id="input"></textarea>
+
+<script text="text/javascript" src="jquery.tabcomplete.js"></script>
+
+<script>
+function assignData(options) {
+  options = ['foo','bar'];
+}
+
+(function($) {
+  $("#input").tabComplete({
+    dataFn:assignData
+   });
+})(jQuery);
+</script>
 </body>
 </html>
 
